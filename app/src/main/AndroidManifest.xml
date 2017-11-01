@@ -18,7 +18,12 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".CountdownActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_countdown"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

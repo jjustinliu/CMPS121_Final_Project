@@ -1,18 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="justin.travis.devin.finalproject.MainActivity">
 
+    <Spinner
+        android:id="@+id/spinner_hours"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:layout_marginTop="124dp"
+        android:layout_toLeftOf="@+id/spinner_minutes"
+        android:layout_toStartOf="@+id/spinner_minutes"
+        android:dropDownWidth="50dp" />
+
+    <Spinner
+        android:id="@+id/spinner_minutes"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView_title"
+        android:layout_alignTop="@+id/spinner_hours"
+        android:dropDownWidth="50dp" />
+
     <TextView
+        android:id="@+id/textView_hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@+id/spinner_minutes"
+        android:layout_alignEnd="@+id/spinner_hours"
+        android:layout_alignLeft="@+id/spinner_hours"
+        android:layout_alignRight="@+id/spinner_hours"
+        android:layout_alignStart="@+id/spinner_hours"
+        android:layout_marginBottom="24dp"
+        android:text=" Hours" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_hours"
+        android:layout_alignBottom="@+id/textView_hours"
+        android:layout_alignLeft="@+id/spinner_minutes"
+        android:layout_alignStart="@+id/spinner_minutes"
+        android:text="Minutes" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="33dp"
+        android:text="How long would you like to study for?"
+        android:layout_above="@+id/textView_hours"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button_spotiify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_minutes"
+        android:layout_marginTop="80dp"
+        android:layout_toEndOf="@+id/textView_minutes"
+        android:text="Spotify" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_spotiify"
+        android:layout_centerHorizontal="true"
+        android:text="Start" />
+
+</android.widget.RelativeLayout>
