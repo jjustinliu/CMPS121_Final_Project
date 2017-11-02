@@ -23,7 +23,8 @@
             android:name=".CountdownActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_countdown"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>

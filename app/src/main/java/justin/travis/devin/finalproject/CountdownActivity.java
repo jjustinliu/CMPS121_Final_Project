@@ -1,18 +1,23 @@
 package justin.travis.devin.finalproject;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class CountdownActivity extends AppCompatActivity {
+    TextView textView;
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -106,6 +111,35 @@ public class CountdownActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        //initialize the ui component
+        textView = findViewById(R.id.fullscreen_content);
+
+        //get the text from intent
+        int hoursTimer = getIntent().getIntExtra("hours",0);
+        int minutesTimer = getIntent().getIntExtra("minutes",0);
+        Toast.makeText(this, hoursTimer + " hours\n" + minutesTimer + " minutes", Toast.LENGTH_SHORT).show();
+
+        //convert the string into integer
+        int timeSeconds = (minutesTimer + (hoursTimer * 60))*60;
+//        int timeSeconds = 10;
+
+        //Initialize a CountDownTimer class with the time data from previous activity
+        //which will set the text view with countDown time
+        new CountDownTimer(timeSeconds * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                //set the remaining time in the textView
+                String temp = (millisUntilFinished / 1000) / 3600 % 24 + ":" + (millisUntilFinished / 1000) / 60 % 60 + ":" + (millisUntilFinished / 1000) % 60;
+                textView.setText(temp);
+            }
+
+            public void onFinish() {
+                textView.setText("done!");
+                MediaPlayer ring = MediaPlayer.create(CountdownActivity.this, R.raw.ring);
+                ring.start();
+                finish();
+            }
+        }.start();
     }
 
     @Override
