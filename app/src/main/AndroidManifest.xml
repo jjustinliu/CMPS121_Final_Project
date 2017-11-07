@@ -21,11 +21,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_countdown"
             android:theme="@style/FullscreenTheme" />
-<<<<<<< HEAD
         <activity android:name=".Silent"></activity>
         <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
         <uses-permission android:name="android.permission.WRITE_SECURE_SETTING"/>
->>>>>>> upstream/master
     </application>
 
 </manifest>
