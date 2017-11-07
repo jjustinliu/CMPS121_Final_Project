@@ -58,7 +58,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button_spotiify"
+        android:id="@+id/button_spotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_minutes"
@@ -70,7 +70,7 @@
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_spotiify"
+        android:layout_alignTop="@+id/button_spotify"
         android:layout_centerHorizontal="true"
         android:text="Start" />
 
