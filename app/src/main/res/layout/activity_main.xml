@@ -56,9 +56,19 @@
         android:text="How long would you like to study for?" />
 
     <Button
+        android:id="@+id/button_spotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_minutes"
+        android:layout_marginTop="80dp"
+        android:layout_toEndOf="@+id/textView_minutes"
+        android:text="Spotify" />
+  
+    <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_spotify"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Start" />
