@@ -10,12 +10,10 @@
         android:id="@+id/spinner_hours"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginTop="124dp"
-        android:layout_toLeftOf="@+id/spinner_minutes"
-        android:layout_toStartOf="@+id/spinner_minutes"
+        android:layout_above="@+id/button_start"
+        android:layout_alignStart="@+id/textView_title"
+        android:layout_marginBottom="39dp"
+        android:layout_marginStart="18dp"
         android:dropDownWidth="50dp" />
 
     <Spinner
@@ -52,10 +50,10 @@
         android:id="@+id/textView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:text="How long would you like to study for?"
         android:layout_above="@+id/textView_hours"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="How long would you like to study for?" />
 
     <Button
         android:id="@+id/button_spotify"
@@ -65,13 +63,39 @@
         android:layout_marginTop="80dp"
         android:layout_toEndOf="@+id/textView_minutes"
         android:text="Spotify" />
-
+  
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button_spotify"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:text="Start" />
+
+    <ImageButton
+        android:id="@+id/spotify_image_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/power_image_button"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/launch_spotify" />
+
+    <ImageButton
+        android:id="@+id/power_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28dp"
+        android:layout_toStartOf="@+id/spinner_hours"
+        android:src="@android:drawable/ic_lock_power_off" />
+
+    <ImageButton
+        android:id="@+id/settings_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spotify_image_button"
+        android:layout_toEndOf="@+id/spinner_minutes"
+        android:src="@android:drawable/ic_menu_preferences" />
 
 </android.widget.RelativeLayout>

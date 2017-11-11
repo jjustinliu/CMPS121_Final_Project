@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,6 +22,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//---------------------power button------------------------------------------------------------------
+        android.widget.ImageButton power_image_button = (ImageButton)findViewById(R.id.power_image_button);
+        power_image_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view){finish();}
+        });
 
 //------[Initialize Variables]-----------------------------------------------------------------
 
@@ -34,9 +42,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             minutes.add(i);
         }
 //------[Spotify Button]-----------------------------------------------------------------------
+     
+//        android.widget.ImageButton launch_spotify = (ImageButton)findViewById(R.id.spotify_image_button);
+//        launch_spotify.setOnClickListener(new View.OnClickListener() {
+      
         Button spotifyButton = findViewById(R.id.button_spotify);
         spotifyButton.setOnClickListener(new View.OnClickListener() {
-
+          
             @Override
             public void onClick(View view) {
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.spotify.music");
@@ -45,7 +57,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 }
             }
         });
-
 //-----[hours spinner stuff]-------------------------------------------------------------------
 
         // Spinner element
