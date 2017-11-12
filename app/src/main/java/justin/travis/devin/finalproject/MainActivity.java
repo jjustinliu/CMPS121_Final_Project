@@ -2,7 +2,9 @@ package justin.travis.devin.finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
     static int minutesSelected;
@@ -22,12 +25,14 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//---------------------power button------------------------------------------------------------------
-        android.widget.ImageButton power_image_button = (ImageButton)findViewById(R.id.power_image_button);
+//------[Power button]-------------------------------------------------------------------------
+        android.widget.ImageButton power_image_button = findViewById(R.id.power_image_button);
         power_image_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view){finish();}
+            public void onClick(View view){
+                Log.d("buttonClick", "Exit Button Clicked");
+                finish();}
         });
 
 //------[Initialize Variables]-----------------------------------------------------------------
@@ -37,27 +42,34 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
         for (int i = 0; i < 24; i++) {
             hours.add(i);
+            Log.d("spinner", i + " hours in spinner list");
+
         }
         for (int i = 0; i < 60; i++) {
             minutes.add(i);
+            Log.d("buttonClick", i + " Minutes in spinner list");
+
         }
 //------[Spotify Button]-----------------------------------------------------------------------
      
 //        android.widget.ImageButton launch_spotify = (ImageButton)findViewById(R.id.spotify_image_button);
 //        launch_spotify.setOnClickListener(new View.OnClickListener() {
       
-        Button spotifyButton = findViewById(R.id.button_spotify);
+//        Button spotifyButton = findViewById(R.id.button_spotify);
+        android.widget.ImageButton spotifyButton = findViewById(R.id.spotify_image_button);
         spotifyButton.setOnClickListener(new View.OnClickListener() {
-          
+
             @Override
             public void onClick(View view) {
+                Log.d("buttonClick", "Spotify Button Clicked");
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.spotify.music");
                 if (launchIntent != null) {
+                    Log.d("buttonClick", "Spotify Launched");
                     startActivity(launchIntent);//null pointer check in case package name was not found
                 }
             }
         });
-//-----[hours spinner stuff]-------------------------------------------------------------------
+//-----[Hours spinner stuff]-------------------------------------------------------------------
 
         // Spinner element
         Spinner hours_spinner_element = findViewById(R.id.spinner_hours);
@@ -98,11 +110,11 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
             @Override
             public void onClick(View view) {
+                Log.d("buttonClick", "Start button Pressed");
                 Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
                 intent.putExtra("hours", hoursSelected);
                 intent.putExtra("minutes", minutesSelected);
                 startActivity(intent);
-
             }
         });
 
@@ -116,18 +128,33 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         Spinner hours = (Spinner) parent;
         Spinner minutes = (Spinner) parent;
 
-        if (hours.getId() == R.id.spinner_hours) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (hours.getId() == R.id.spinner_hours && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
+                hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
+                Log.d("spinner", hoursSelected + " on " + Build.VERSION.SDK_INT + "Build SDK");
+                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        }else if (hours.getId() == R.id.spinner_hours) {
             hoursSelected = Integer.parseInt(parent.getSelectedItem().toString());
+            Log.d("spinner", hoursSelected + " on " + Build.VERSION.SDK_INT + "Build SDK");
             Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
         }
-        if (minutes.getId() == R.id.spinner_minutes) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (minutes.getId() == R.id.spinner_minutes && !Objects.equals(parent.getItemAtPosition(position).toString(), "0")) {
+                minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
+                Log.d("spinner", minutesSelected + " on Android SDK " + Build.VERSION.SDK_INT);
+                Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        }else if (minutes.getId() == R.id.spinner_minutes) {
             minutesSelected = Integer.parseInt(parent.getSelectedItem().toString());
+            Log.d("spinner", minutesSelected + " on Android SDK " + Build.VERSION.SDK_INT);
             Toast.makeText(this, "Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
-
+        Log.d("spinner", "Nothing Selected");
     }
 }

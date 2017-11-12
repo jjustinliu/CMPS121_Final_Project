@@ -22,8 +22,7 @@
             android:label="@string/title_activity_countdown"
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".Silent"></activity>
-        <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-        <uses-permission android:name="android.permission.WRITE_SECURE_SETTING"/>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTING"/>
 </manifest>

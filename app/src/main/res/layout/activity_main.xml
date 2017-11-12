@@ -11,9 +11,9 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_start"
-        android:layout_alignStart="@+id/textView_title"
-        android:layout_marginBottom="39dp"
-        android:layout_marginStart="18dp"
+        android:layout_alignLeft="@+id/textView_hours"
+        android:layout_alignStart="@+id/textView_hours"
+        android:layout_marginBottom="30dp"
         android:dropDownWidth="50dp" />
 
     <Spinner
@@ -21,29 +21,29 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/textView_title"
+        android:layout_alignRight="@+id/textView_title"
+        android:layout_alignTop="@+id/spinner_hours" />
+        <!--android:layout_alignEnd="@+id/textView_title"-->
         android:layout_alignTop="@+id/spinner_hours"
         android:dropDownWidth="50dp" />
 
     <TextView
         android:id="@+id/textView_hours"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/spinner_minutes"
-        android:layout_alignEnd="@+id/spinner_hours"
-        android:layout_alignLeft="@+id/spinner_hours"
-        android:layout_alignRight="@+id/spinner_hours"
-        android:layout_alignStart="@+id/spinner_hours"
-        android:layout_marginBottom="24dp"
-        android:text=" Hours" />
+        android:layout_alignLeft="@+id/textView_title"
+        android:layout_alignStart="@+id/textView_title"
+        android:layout_marginBottom="25dp"
+        android:text="Hours" />
 
     <TextView
         android:id="@+id/textView_minutes"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_hours"
-        android:layout_alignBottom="@+id/textView_hours"
-        android:layout_alignLeft="@+id/spinner_minutes"
-        android:layout_alignStart="@+id/spinner_minutes"
+        android:layout_below="@+id/textView_title"
+        android:layout_toEndOf="@+id/button_start"
+        android:layout_toRightOf="@+id/button_start"
         android:text="Minutes" />
 
     <TextView
@@ -55,20 +55,19 @@
         android:layout_marginBottom="24dp"
         android:text="How long would you like to study for?" />
 
-    <Button
-        android:id="@+id/button_spotify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner_minutes"
-        android:layout_marginTop="80dp"
-        android:layout_toEndOf="@+id/textView_minutes"
-        android:text="Spotify" />
-  
+    <!--<Button-->
+        <!--android:id="@+id/button_spotify"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/spinner_minutes"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:layout_toEndOf="@+id/textView_minutes"-->
+        <!--android:text="Spotify" />-->
+
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button_spotify"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Start" />
@@ -86,8 +85,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="28dp"
-        android:layout_toStartOf="@+id/spinner_hours"
+        android:layout_marginBottom="32dp"
+        android:layout_toEndOf="@+id/spinner_minutes"
+        android:layout_toRightOf="@+id/spinner_minutes"
         android:src="@android:drawable/ic_lock_power_off" />
 
     <ImageButton
@@ -95,7 +95,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/spotify_image_button"
-        android:layout_toEndOf="@+id/spinner_minutes"
+        android:layout_toLeftOf="@+id/textView_title"
+        android:layout_toStartOf="@+id/textView_title"
         android:src="@android:drawable/ic_menu_preferences" />
 
 </android.widget.RelativeLayout>

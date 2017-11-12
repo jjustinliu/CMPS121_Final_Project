@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -102,6 +103,7 @@ public class CountdownActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 toggle();
+                Log.d("buttonClick", "UI toggle ");
             }
         });
 
@@ -128,13 +130,16 @@ public class CountdownActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 //set the remaining time in the textView
                 String temp = (millisUntilFinished / 1000) / 3600 % 24 + ":" + (millisUntilFinished / 1000) / 60 % 60 + ":" + (millisUntilFinished / 1000) % 60;
+                Log.d("buttonClick", temp + "");
                 textView.setText(temp);
             }
 
             public void onFinish() {
+                Log.d("buttonClick", "Timer done");
                 textView.setText("done!");
                 MediaPlayer ring = MediaPlayer.create(CountdownActivity.this, R.raw.ring);
                 ring.start();
+                Log.d("buttonClick", "That happened and we all let it happen");
                 finish();
             }
         }.start();
@@ -195,6 +200,6 @@ public class CountdownActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "YOU SHALL NEVER LEAVE!\n THIS IS MY DOMAIN!", Toast.LENGTH_SHORT).show();
-
+        Log.d("buttonClick", "Back Button pressed");
     }
 }
