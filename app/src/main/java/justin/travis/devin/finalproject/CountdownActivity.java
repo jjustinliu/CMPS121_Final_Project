@@ -1,7 +1,10 @@
 package justin.travis.devin.finalproject;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -48,7 +51,7 @@ public class CountdownActivity extends AppCompatActivity {
             return false;
         }
     };
-    TextView textView;
+    private TextView textView;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -136,10 +139,33 @@ public class CountdownActivity extends AppCompatActivity {
 
             public void onFinish() {
                 Log.d("buttonClick", "Timer done");
-                textView.setText("done!");
+                textView.setText(R.string.done);
+
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Log.d("buildInfo", "build check passed");
+                    if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted()) {
+                        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+                        Log.d("notificationManager", "Notifications unmuted");
+                    }
+                }
+                //unmute audio
+//                AudioManager audio=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+//                if (audio != null) {
+//                    audio.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
+//                    audio.setStreamMute(AudioManager.STREAM_ALARM, false);
+//                    audio.setStreamMute(AudioManager.STREAM_MUSIC, false);
+//                    audio.setStreamMute(AudioManager.STREAM_RING, false);
+//                    audio.setStreamMute(AudioManager.STREAM_SYSTEM, false);
+//                    Log.d("audioManager", "Audio unmuted");
+//                }
+
                 MediaPlayer ring = MediaPlayer.create(CountdownActivity.this, R.raw.ring);
                 ring.start();
                 Log.d("buttonClick", "That happened and we all let it happen");
+
+
                 finish();
             }
         }.start();

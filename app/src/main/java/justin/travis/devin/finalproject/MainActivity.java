@@ -1,6 +1,8 @@
 package justin.travis.devin.finalproject;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,14 +19,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    static int minutesSelected;
-    static int hoursSelected;
+    private static int minutesSelected;
+    private static int hoursSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//------[Power button]-------------------------------------------------------------------------
+//------[Power button]------------------------------------------------------------------------------
         android.widget.ImageButton power_image_button = findViewById(R.id.power_image_button);
         power_image_button.setOnClickListener(new View.OnClickListener() {
 
@@ -35,7 +36,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 finish();}
         });
 
-//------[Initialize Variables]-----------------------------------------------------------------
+//------[Initialize Variables]----------------------------------------------------------------------
 
         List<Integer> hours = new ArrayList<>();
         List<Integer> minutes = new ArrayList<>();
@@ -50,7 +51,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             Log.d("buttonClick", i + " Minutes in spinner list");
 
         }
-//------[Spotify Button]-----------------------------------------------------------------------
+//------[Spotify Button]----------------------------------------------------------------------------
      
 //        android.widget.ImageButton launch_spotify = (ImageButton)findViewById(R.id.spotify_image_button);
 //        launch_spotify.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 }
             }
         });
-//-----[Hours spinner stuff]-------------------------------------------------------------------
+//-----[Hours spinner stuff]------------------------------------------------------------------------
 
         // Spinner element
         Spinner hours_spinner_element = findViewById(R.id.spinner_hours);
@@ -78,15 +79,15 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         hours_spinner_element.setOnItemSelectedListener(this);
 
         // Creating adapter for spinner
-        ArrayAdapter<Integer> hoursdataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours);
+        ArrayAdapter<Integer> hoursDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours);
 
         // Drop down layout style - list view with radio button
-        hoursdataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hoursDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        hours_spinner_element.setAdapter(hoursdataAdapter);
+        hours_spinner_element.setAdapter(hoursDataAdapter);
 
-//-----[Minutes spinner stuff]-------------------------------------------------------------------
+//-----[Minutes spinner stuff]----------------------------------------------------------------------
 
         // Spinner element
         Spinner minutes_spinner_element = findViewById(R.id.spinner_minutes);
@@ -95,15 +96,15 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         minutes_spinner_element.setOnItemSelectedListener(this);
 
         // Creating adapter for spinner
-        ArrayAdapter<Integer> minutesdataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, minutes);
+        ArrayAdapter<Integer> minutesDataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, minutes);
 
         // Drop down layout style - list view with radio button
-        minutesdataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        minutesDataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        minutes_spinner_element.setAdapter(minutesdataAdapter);
+        minutes_spinner_element.setAdapter(minutesDataAdapter);
 
-//-----[Start Button]---------------------------------------------------------------------------
+//-----[Start Button]-------------------------------------------------------------------------------
 
         Button startButton = findViewById(R.id.button_start);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -114,11 +115,43 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
                 intent.putExtra("hours", hoursSelected);
                 intent.putExtra("minutes", minutesSelected);
+
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Log.d("buildInfo", "Build check passed");
+//                    Log.d("buildInfo", "" + mNotificationManager);
+                    Log.d("buildInfo", "" + mNotificationManager.isNotificationPolicyAccessGranted());
+                    if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE);
+                        Log.d("notificationManager", "Notifications muted");
+                    }
+                }
+                //mute audio
+//                AudioManager audio=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+//                if (audio != null) {
+//                    audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0,0);
+//                    audio.setStreamVolume(AudioManager.STREAM_ALARM, 0,0);
+//                    audio.setStreamVolume(AudioManager.STREAM_MUSIC, 0,0);
+//                    audio.setStreamVolume(AudioManager.STREAM_RING, 0,0);
+//                    audio.setStreamVolume(AudioManager.STREAM_SYSTEM, 0,0);
+//                    Log.d("audioManager", "Audio muted");
+//                }
+
                 startActivity(intent);
             }
         });
 
-//----------------------------------------------------------------------------------------------
+//------[Settings Button]---------------------------------------------------------------------------
+
+        android.widget.ImageButton settingsButton = findViewById(R.id.settings_image_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
