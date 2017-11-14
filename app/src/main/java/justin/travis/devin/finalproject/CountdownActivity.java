@@ -110,10 +110,20 @@ public class CountdownActivity extends AppCompatActivity {
             }
         });
 
+        //------[Power button]------------------------------------------------------------------------------
+        android.widget.Button cancel_button = findViewById(R.id.countdown_power_button);
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view){
+                Log.d("buttonClick", "Exit Button Clicked");
+                finish();}
+        });
+
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.countdown_power_button).setOnTouchListener(mDelayHideTouchListener);
 
         //initialize the ui component
         textView = findViewById(R.id.fullscreen_content);

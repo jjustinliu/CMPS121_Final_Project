@@ -26,6 +26,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 //------[Power button]------------------------------------------------------------------------------
         android.widget.ImageButton power_image_button = findViewById(R.id.power_image_button);
         power_image_button.setOnClickListener(new View.OnClickListener() {

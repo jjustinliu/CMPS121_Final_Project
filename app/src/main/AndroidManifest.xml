@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS" />
+
     <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS"/> -->
     <!-- <uses-permission android:name="android.permission.WRITE_SECURE_SETTING"/> -->
     <application
@@ -28,7 +29,7 @@
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
     </application>
 
 </manifest>

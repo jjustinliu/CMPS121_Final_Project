@@ -36,12 +36,12 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/dummy_button"
+                android:id="@+id/countdown_power_button"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/i_dont_do_anything" />
+                android:text="Cancel" />
 
         </LinearLayout>
     </FrameLayout>
