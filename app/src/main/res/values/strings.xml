@@ -77,4 +77,17 @@
     <string name="title_activity_countdown">CountdownActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="done">done!</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="how_long_would_you_like_to_study_for">How long would you like to study for?</string>
+    <string name="start">Start</string>
+    <string name="i_dont_do_anything">I don\'t do anything</string>
+    <string name="opens_spotify">Opens Spotify</string>
+    <string name="closes_the_app">Closes the app</string>
+    <string name="opens_the_settings_page">Opens the settings page</string>
+    <string name="in_order_to_properly_mute_the_audio_the_app_needs_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_nspecial_app_access_do_not_disturb">In order to properly mute the audio the app needs to have notification access in the settings\nSettings > Apps &amp; notifications >\nSpecial app access > Do not Disturb</string>
+    <string name="cancel">Cancel</string>
+    <string name="studybudy">StudyBudy</string>
+    <string name="settings">Settings</string>
 </resources>
