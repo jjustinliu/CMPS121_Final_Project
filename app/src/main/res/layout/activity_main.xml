@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="justin.travis.devin.finalproject.MainActivity"
-    android:background="@drawable/chalkboardbackground">
+    android:background="@drawable/appbackground">
 
     <Spinner
         android:id="@+id/spinner_hours"
@@ -32,8 +32,8 @@
         android:layout_alignLeft="@+id/textView_title"
         android:layout_alignStart="@+id/textView_title"
         android:layout_marginBottom="25dp"
-        android:text="@string/hours"
-        android:textColor="#FFFFFF"/>
+        android:text="@string/hours"/>
+        <!--android:textColor="#FFFFFF"/>-->
 
     <TextView
         android:id="@+id/textView_minutes"
@@ -42,8 +42,8 @@
         android:layout_below="@+id/textView_title"
         android:layout_toEndOf="@+id/button_start"
         android:layout_toRightOf="@+id/button_start"
-        android:text="@string/minutes"
-        android:textColor="#FFFFFF"/>
+        android:text="@string/minutes"/>
+        <!--android:textColor="#FFFFFF"/>-->
 
     <TextView
         android:id="@+id/textView_title"
@@ -52,9 +52,8 @@
         android:layout_above="@+id/textView_hours"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:text="@string/how_long_would_you_like_to_study_for"
-        android:textColor="#FFFFFF"
-        />
+        android:text="@string/how_long_would_you_like_to_study_for"/>
+        <!--android:textColor="#FFFFFF"/>-->
 
     <!--<Button-->
         <!--android:id="@+id/button_spotify"-->
@@ -80,19 +79,17 @@
         android:layout_alignBottom="@+id/power_image_button"
         android:layout_centerHorizontal="true"
         android:background="@drawable/launch_spotify"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/opens_spotify" />
 
     <ImageButton
         android:id="@+id/power_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="43dp"
-        android:layout_toEndOf="@+id/spotify_image_button"
-        android:layout_toRightOf="@+id/spotify_image_button"
-        android:contentDescription="TODO"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:layout_toEndOf="@+id/spinner_minutes"
+        android:layout_toRightOf="@+id/spinner_minutes"
+        android:contentDescription="@string/closes_the_app"
         android:src="@android:drawable/ic_lock_power_off" />
 
     <ImageButton
@@ -100,25 +97,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/spotify_image_button"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_toLeftOf="@+id/spotify_image_button"
-        android:layout_toStartOf="@+id/spotify_image_button"
-        android:contentDescription="TODO"
+        android:layout_toLeftOf="@+id/spinner_hours"
+        android:layout_toStartOf="@+id/spinner_hours"
+        android:contentDescription="@string/opens_the_settings_page"
         android:src="@android:drawable/ic_menu_preferences" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/power_image_button"
-        android:layout_alignLeft="@+id/settings_image_button"
-        android:layout_alignRight="@+id/power_image_button"
-        android:layout_alignStart="@+id/settings_image_button"
-        android:layout_below="@+id/button_start"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="@string/in_order_to_properly_mute_the_audio_the_app_nneeds_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_n_special_app_access_do_not_disturb"
-        android:textColor="#FFFFFF" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignEnd="@+id/power_image_button"-->
+        <!--android:layout_alignLeft="@+id/settings_image_button"-->
+        <!--android:layout_alignRight="@+id/power_image_button"-->
+        <!--android:layout_alignStart="@+id/settings_image_button"-->
+        <!--android:layout_below="@+id/button_start"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/in_order_to_properly_mute_the_audio_the_app_needs_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_nspecial_app_access_do_not_disturb"/>-->
+
+    <!--android:textColor="#FFFFFF" />-->
 
 </android.widget.RelativeLayout>
