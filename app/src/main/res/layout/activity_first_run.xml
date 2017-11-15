@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@android:color/holo_orange_light"
     tools:context="justin.travis.devin.finalproject.FirstRun">
 
     <Button
@@ -11,9 +12,9 @@
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_FirstRunMessage"
+        android:layout_above="@+id/button_done"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginBottom="66dp"
         android:text="@string/settings"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />
 
@@ -29,12 +30,12 @@
 
     <TextView
         android:id="@+id/textView_FirstRunMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/button_Settings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_Title"
-        android:layout_marginTop="128dp"
+        android:layout_marginBottom="44dp"
         android:gravity="center_horizontal"
         android:text="@string/in_order_to_properly_mute_the_audio_the_app_needs_to_have_notification_access_in_the_settings_nsettings_apps_amp_notifications_nspecial_app_access_do_not_disturb"
         android:textAppearance="@android:style/TextAppearance.Material.Menu" />
@@ -50,5 +51,14 @@
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:text="@string/done" />
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/textView_Title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/book_icon" />
 </android.widget.RelativeLayout>

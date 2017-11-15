@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -83,6 +84,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                 if (launchIntent != null) {
                     Log.d("buttonClick", "Spotify Launched");
                     startActivity(launchIntent);//null pointer check in case package name was not found
+                } else {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.spotify.music")));
+                    } catch (android.content.ActivityNotFoundException e) { // if there is no Google Play on device
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "com.spotify.music")));
+                    }
                 }
             }
         });
