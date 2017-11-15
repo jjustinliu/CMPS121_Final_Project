@@ -120,55 +120,6 @@ public class CountdownActivity extends AppCompatActivity {
             }
         });
 
-        //------[Power button]------------------------------------------------------------------------------
-        android.widget.Button cancel_button = findViewById(R.id.countdown_power_button);
-        cancel_button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Log.d("buttonClick", "Exit Button Clicked");
-                Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Log.d("buildInfo", "build check passed");
-                    if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted()) {
-                        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
-                        Log.d("notificationManager", "Notifications unmuted");
-                    }
-                } else if (audio != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !audio.isVolumeFixed()) {
-                    //mute audio
-
-                    int notifications = prefs.getInt("notifications", 0);
-                    int alarm = prefs.getInt("alarm", 0);
-                    //                        int music = prefs.getInt("music",0);
-                    int ring = prefs.getInt("ring", 0);
-                    int system = prefs.getInt("system", 0);
-
-                    Log.d("audioManager", "Notifications Shared Volume: " + notifications);
-                    Log.d("audioManager", "Alarm Shared Volume: " + alarm);
-                    //                        Log.d("audioManager", "Music Shared Volume: " + music);
-                    Log.d("audioManager", "Ring Shared Volume: " + ring);
-                    Log.d("audioManager", "System Shared Volume: " + system);
-
-                    audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifications, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_ALARM, alarm, 0);
-                    //                        audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_RING, ring, 0);
-                    audio.setStreamVolume(AudioManager.STREAM_SYSTEM, system, 0);
-
-                    Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
-                    Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
-                    //                        Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
-                    Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
-                    Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
-
-                    Log.d("audioManager", "All audio unmuted");
-
-                }
-//                MyCountdownTimer.finish();
-                finish();
-            }
-        });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
@@ -188,7 +139,7 @@ public class CountdownActivity extends AppCompatActivity {
 
         //Initialize a CountDownTimer class with the time data from previous activity
         //which will set the text view with countDown time
-        CountDownTimer MyCountdownTimer = new CountDownTimer(timeSeconds * 1000, 1000) {
+        final CountDownTimer MyCountdownTimer = new CountDownTimer(timeSeconds * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 //set the remaining time in the textView
                 String temp = (millisUntilFinished / 1000) / 3600 % 24 + ":" + (millisUntilFinished / 1000) / 60 % 60 + ":" + (millisUntilFinished / 1000) % 60;
@@ -246,6 +197,56 @@ public class CountdownActivity extends AppCompatActivity {
                 finish();
             }
         }.start();
+
+        //------[Power button]------------------------------------------------------------------------------
+        android.widget.Button cancel_button = findViewById(R.id.countdown_power_button);
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.d("buttonClick", "Exit Button Clicked");
+                Log.d("buildInfo", "" + Build.VERSION.SDK_INT);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Log.d("buildInfo", "build check passed");
+                    if (mNotificationManager != null && mNotificationManager.isNotificationPolicyAccessGranted()) {
+                        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+                        Log.d("notificationManager", "Notifications unmuted");
+                    }
+                } else if (audio != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !audio.isVolumeFixed()) {
+                    //mute audio
+
+                    int notifications = prefs.getInt("notifications", 0);
+                    int alarm = prefs.getInt("alarm", 0);
+                    //                        int music = prefs.getInt("music",0);
+                    int ring = prefs.getInt("ring", 0);
+                    int system = prefs.getInt("system", 0);
+
+                    Log.d("audioManager", "Notifications Shared Volume: " + notifications);
+                    Log.d("audioManager", "Alarm Shared Volume: " + alarm);
+                    //                        Log.d("audioManager", "Music Shared Volume: " + music);
+                    Log.d("audioManager", "Ring Shared Volume: " + ring);
+                    Log.d("audioManager", "System Shared Volume: " + system);
+
+                    audio.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifications, 0);
+                    audio.setStreamVolume(AudioManager.STREAM_ALARM, alarm, 0);
+                    //                        audio.setStreamVolume(AudioManager.STREAM_MUSIC, music, 0);
+                    audio.setStreamVolume(AudioManager.STREAM_RING, ring, 0);
+                    audio.setStreamVolume(AudioManager.STREAM_SYSTEM, system, 0);
+
+                    Log.d("audioManager", "Notifications Volume: " + audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+                    Log.d("audioManager", "Alarm Volume: " + audio.getStreamVolume(AudioManager.STREAM_ALARM));
+                    //                        Log.d("audioManager", "Music Volume: " + audio.getStreamVolume(AudioManager.STREAM_MUSIC));
+                    Log.d("audioManager", "Ring Volume: " + audio.getStreamVolume(AudioManager.STREAM_RING));
+                    Log.d("audioManager", "System Volume: " + audio.getStreamVolume(AudioManager.STREAM_SYSTEM));
+
+                    Log.d("audioManager", "All audio unmuted");
+
+                }
+                MyCountdownTimer.cancel();
+                finish();
+            }
+        });
+
     }
 
     @Override
