@@ -90,4 +90,8 @@
     <string name="cancel">Cancel</string>
     <string name="studybudy">StudyBudy</string>
     <string name="settings">Settings</string>
+    <string name="pref_header_data_sync_di" />
+    <string name="lable" />
+    <string name="default_SMSText" />
+    <string name="startButton" />
 </resources>
